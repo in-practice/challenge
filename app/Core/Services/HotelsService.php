@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 
-namespace app\Core\Services;
-use app\Core\Adapters\ISupplierAdapter;
+namespace challenge\Core\Services;
+use challenge\Core\Adapters\ISupplierAdapter;
 use challenge\Http\Requests\SearchHotelsRequest;
 /**
  * Description of HotelsService
@@ -23,6 +23,6 @@ class HotelsService {
     }
     
     public function searchHotels(SearchHotelsRequest $request){
-        $result = $this->supplierAdapter->fetchHotels();
+        return $this->supplierAdapter->fetchHotels();
     }
 }

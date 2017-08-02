@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace app\Core\Adapters;
+namespace challenge\Core\Adapters;
 
 /**
  *
