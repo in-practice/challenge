@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace challenge\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
