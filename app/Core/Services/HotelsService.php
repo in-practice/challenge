@@ -8,7 +8,12 @@
 
 namespace challenge\Core\Services;
 use challenge\Core\Adapters\ISupplierAdapter;
-use challenge\Http\Requests\SearchHotelsRequest;
+use challenge\Core\Requests\SearchHotelRequest;
+use \challenge\Core\Search\Strategies\DateFilterStrategy;
+use \challenge\Core\Search\Strategies\PriceFilterStrategy;
+use \challenge\Core\Search\Strategies\HotelNameFilterStrategy;
+use \challenge\Core\Search\Strategies\CityFilterStrategy;
+
 /**
  * Description of HotelsService
  *
@@ -22,7 +27,26 @@ class HotelsService {
         $this->supplierAdapter = $supplierAdapter;
     }
     
-    public function searchHotels(SearchHotelsRequest $request){
-        return $this->supplierAdapter->fetchHotels();
+    public function searchHotels(SearchHotelRequest $request){
+        
+        $pipeline = [];
+        $pipeline []= new DateFilterStrategy();
+        $pipeline []= new PriceFilterStrategy();
+        $pipeline []= new HotelNameFilterStrategy();
+        $pipeline []= new CityFilterStrategy();
+        $result = $this->supplierAdapter->fetchHotels();
+        $hotels = $result->getHotels();
+        $filteredHotels = [];
+        foreach ($hotels as $hotel){
+            $matches = true;
+            foreach($pipeline as $strategy){
+                $matches = $strategy->processData($request,$hotel);
+                if(!$matches)
+                    break;
+            }
+            if($matches)
+                $filteredHotels[] = $hotel;
+        }
+        return $filteredHotels;
     }
 }

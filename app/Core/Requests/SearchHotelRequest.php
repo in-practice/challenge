@@ -19,14 +19,23 @@ class SearchHotelRequest {
     private $toPrice;
     private $fromDate;
     private $toDate;
-    
-    public function __construct($fromPrice,$toPrice,$fromDate,$toDate) {
+    private $hotelName;
+    private $cityName;
+
+    public function __construct($hotelName,$cityName,$fromPrice,$toPrice,$fromDate,$toDate) {
+        $this->hotelName = $hotelName;
+        $this->cityName = $cityName;
         $this->fromPrice = $fromPrice;
         $this->toPrice = $toPrice;
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;
+        
     }
     
+    public function getHotelName(){
+        return $this->hotelName;
+    }
+
     public function getFromPrice(){
         return $this->fromPrice;
     }
@@ -41,6 +50,10 @@ class SearchHotelRequest {
     
     public function getToDate(){
         return $this->toDate;
+    }
+    
+    public function getCityName(){
+        return $this->cityName;
     }
     
 }

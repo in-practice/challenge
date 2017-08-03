@@ -31,7 +31,7 @@ class Hotel {
         return $this->name;
     }
     
-    public function getCity(){
+    public function getCityName(){
         return $this->city;
     }
     
