@@ -29,17 +29,24 @@ class HotelsService {
     
     public function searchHotels(SearchHotelRequest $request){
         
+        //Filter pipeline strategy is combined here,
+        //a factory can be responsible for the pipeline creation if things are more complicated
         $pipeline = [];
         $pipeline []= new DateFilterStrategy();
         $pipeline []= new PriceFilterStrategy();
         $pipeline []= new HotelNameFilterStrategy();
         $pipeline []= new CityFilterStrategy();
+        
+        //Fetch hotels from supplier
         $result = $this->supplierAdapter->fetchHotels();
         $hotels = $result->getHotels();
+        
+        //Add only matching hotels to the list
         $filteredHotels = [];
         foreach ($hotels as $hotel){
             $matches = true;
             foreach($pipeline as $strategy){
+                //Check if this hotel mismatches one of the strategies
                 $matches = $strategy->processData($request,$hotel);
                 if(!$matches)
                     break;

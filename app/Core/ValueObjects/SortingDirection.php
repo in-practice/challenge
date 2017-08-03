@@ -9,7 +9,7 @@
 namespace challenge\Core\ValueObjects;
 
 /**
- * Description of SortingDirection
+ * Enum for sorting directions
  *
  * @author mostafasaeed
  */
