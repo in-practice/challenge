@@ -21,15 +21,18 @@ class SearchHotelRequest {
     private $toDate;
     private $hotelName;
     private $cityName;
+    private $sortingField;
+    private $sortingDirection;
 
-    public function __construct($hotelName,$cityName,$fromPrice,$toPrice,$fromDate,$toDate) {
+    public function __construct($hotelName,$cityName,$fromPrice,$toPrice,$fromDate,$toDate,$sortingField,$sortingDirection) {
         $this->hotelName = $hotelName;
         $this->cityName = $cityName;
         $this->fromPrice = $fromPrice;
         $this->toPrice = $toPrice;
         $this->fromDate = $fromDate;
         $this->toDate = $toDate;
-        
+        $this->sortingField = $sortingField;
+        $this->sortingDirection = $sortingDirection;        
     }
     
     public function getHotelName(){
@@ -54,6 +57,14 @@ class SearchHotelRequest {
     
     public function getCityName(){
         return $this->cityName;
+    }
+    
+    public function getSortingField(){
+        return $this->getSortingField();
+    }
+    
+    public function getSortingDirection(){
+        return $this->getSortingDirection();
     }
     
 }
