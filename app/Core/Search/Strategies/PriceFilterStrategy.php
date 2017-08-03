@@ -18,6 +18,12 @@ use \challenge\Core\Search\ISearchStrategy;
  */
 class PriceFilterStrategy implements ISearchStrategy {
 
+    
+    /**
+     * Responsible for checking if hotel price matches the search range
+     *
+     * @return bool
+     */
     public function processData($request,$hotel): bool {
         $fromPrice = $request->getFromPrice();
         $toPrice = $request->getToPrice();

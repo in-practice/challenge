@@ -18,7 +18,12 @@ use \Carbon\Carbon;
  */
 class DateFilterStrategy implements ISearchStrategy {
 
-    public function processData($request,$hotel): \bool {
+    /**
+     * Responsible for checking whether the search request matches the hotel availability
+     *
+     * @return void
+     */
+    public function processData($request,$hotel): bool {
         $requestFromDate = $request->getFromDate();
         $requestToDate = $request->getToDate();
         if(is_null($requestFromDate) && is_null($requestToDate))
@@ -32,11 +37,11 @@ class DateFilterStrategy implements ISearchStrategy {
         foreach ($availabilities as $availability){
             $availabilityFromDate = $availability->getFromDate();
             $availabilityToDate = $availability->getToDate();
-            if($requestToDate <= $availabilityFromDate || $requestFromDate >= $availabilityToDate)
-                continue;
-            
+            if($requestFromDate >= $availabilityFromDate && $requestToDate <= $availabilityToDate){
+                $matchesAvailability = true;
+                break;
+            }  
         }
-        return true;        
+        return $matchesAvailability;        
     }
-
 }
