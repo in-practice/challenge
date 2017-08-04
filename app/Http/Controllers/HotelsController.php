@@ -8,6 +8,8 @@ use challenge\Core\Services\HotelsService;
 use \challenge\Core\Requests\SearchHotelRequest;
 use \challenge\Http\Requests\GetHotelsRequest;
 use \Carbon\Carbon;
+use \Illuminate\Support\Facades\App;
+use \challenge\Core\Adapters\ISupplierAdapter;
 
 class HotelsController extends Controller
 {
@@ -29,8 +31,8 @@ class HotelsController extends Controller
             $request->fromDate = Carbon::parse($request->fromDate);
         if(!is_null($request->toDate))
             $request->toDate = Carbon::parse($request->toDate);
-        $endpoint = 'https://api.myjson.com/bins/tl0bp';
-        $supplierAdapter = new SupplierAdapter($endpoint);
+        
+        $supplierAdapter = App::make(ISupplierAdapter::class);
         $hotelsService = new HotelsService($supplierAdapter);
         $searchRequest = new SearchHotelRequest(
                 $request->hotelName,

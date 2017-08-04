@@ -45,7 +45,7 @@ class SupplierAdapter implements ISupplierAdapter {
             }
             $hotels []= new Hotel($resultHotel->name,$resultHotel->city,$resultHotel->price,$availabilities);
         }
-        return new HotelsSearchResponse($hotels);        
+        return $hotels;        
     }
 
 }

@@ -36,8 +36,7 @@ class HotelsService {
         
         
         //Fetch hotels from supplier
-        $result = $this->supplierAdapter->fetchHotels();
-        $hotels = $result->getHotels();
+        $hotels = $this->supplierAdapter->fetchHotels();
         
         //Creating filter pipeline
         $pipeline = $this->createFilterPipeline();

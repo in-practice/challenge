@@ -1,5 +1,8 @@
 <?php
 
+
+use challenge\Core\Adapters\ISupplierAdapter;
+use challenge\Adapters\SupplierAdapter;
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -51,5 +54,10 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+
+$app->bind(ISupplierAdapter::class,function($app){
+     $endpoint = 'https://api.myjson.com/bins/tl0bp';
+     return new SupplierAdapter($endpoint);
+});
 
 return $app;
