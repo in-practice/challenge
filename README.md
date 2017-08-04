@@ -1,11 +1,9 @@
 # Assumptions
 1 - Sorting is allowed only for one field at a time.
 
-2 - Price range should be provided both (min,max) or nothing
+2 - Date range should be provided both (checkin,checkout) or nothing
 
-3 - Date range should be provided both (checkin,checkout) or nothing
-
-4 - All information is returned from the endpoint with no null values.
+3 - All information is returned from the endpoint with no null values.
 
 
 # Environment Prerequisites
