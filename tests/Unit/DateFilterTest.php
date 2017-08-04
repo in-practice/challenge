@@ -54,7 +54,7 @@ class DateFilterTest extends TestCase
         $hotel = $this->getMockHotel($availabilities);
         $request = $this->getMockRequest($fromDate, $toDate);
         $dateFilterStrategy = new DateFilterStrategy();
-        $this->assertFalse($dateFilterStrategy->processData($request, $hotel));
+        $this->assertFalse($dateFilterStrategy->match($request, $hotel));
     }
     
     /**
@@ -72,7 +72,7 @@ class DateFilterTest extends TestCase
         $hotel = $this->getMockHotel($availabilities);
         $request = $this->getMockRequest($fromDate, $toDate);
         $dateFilterStrategy = new DateFilterStrategy();
-        $this->assertFalse($dateFilterStrategy->processData($request, $hotel));
+        $this->assertFalse($dateFilterStrategy->match($request, $hotel));
     }
     
     /**
@@ -90,7 +90,7 @@ class DateFilterTest extends TestCase
         $hotel = $this->getMockHotel($availabilities);
         $request = $this->getMockRequest($fromDate, $toDate);
         $dateFilterStrategy = new DateFilterStrategy();
-        $this->assertTrue($dateFilterStrategy->processData($request, $hotel));
+        $this->assertTrue($dateFilterStrategy->match($request, $hotel));
     }
     
     /**
@@ -108,6 +108,25 @@ class DateFilterTest extends TestCase
         $hotel = $this->getMockHotel($availabilities);
         $request = $this->getMockRequest($fromDate, $toDate);
         $dateFilterStrategy = new DateFilterStrategy();
-        $this->assertFalse($dateFilterStrategy->processData($request, $hotel));
+        $this->assertFalse($dateFilterStrategy->match($request, $hotel));
+    }
+    
+     /**
+     * Testing range overlaps partially the hotel availability
+     *
+     * @return void
+     */
+    public function testMatchingSecondAvailability()
+    {
+        $fromDate = Carbon::parse('2017-05-20');
+        $toDate = Carbon::parse('2017-05-25');
+        $availabilities = [ 
+            new HotelAvailability(Carbon::parse('2016-05-10'),Carbon::parse('2016-05-20')),
+            new HotelAvailability(Carbon::parse('2017-05-10'),Carbon::parse('2017-05-30'))
+        ];
+        $hotel = $this->getMockHotel($availabilities);
+        $request = $this->getMockRequest($fromDate, $toDate);
+        $dateFilterStrategy = new DateFilterStrategy();
+        $this->assertTrue($dateFilterStrategy->match($request, $hotel));
     }
 }

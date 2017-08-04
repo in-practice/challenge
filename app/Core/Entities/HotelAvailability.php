@@ -13,9 +13,9 @@ use \Carbon\Carbon;
  *
  * @author mostafasaeed
  */
-class HotelAvailability {
-    private $from;
-    private $to;
+class HotelAvailability implements \JsonSerializable {
+    public $from;
+    public $to;
     
     public function __construct(Carbon $from, Carbon $to) {
         $this->from = $from;
@@ -29,6 +29,12 @@ class HotelAvailability {
     public function getToDate(){
         return $this->to;
     }
-    
-    
+
+    public function jsonSerialize() {
+        return[
+            "from"=> $this->from->format('d-m-yy'),
+            "to"=> $this->to->format('d-m-yy')
+        ];
+    }
+
 }

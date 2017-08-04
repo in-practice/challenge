@@ -13,16 +13,12 @@ use \challenge\Core\Entities\Hotel ;
  *
  * @author mostafasaeed
  */
-class HotelPriceComparer implements IHotelComparer {
+class HotelPriceComparer implements IComparer {
 
     public function compare($firstHotel,$secondHotel) {
         $firstPrice = $firstHotel->getPrice();
         $secondPrice = $secondHotel->getPrice();
-        if($firstPrice == $secondPrice)
-            return 0;
-        if($firstPrice < $secondPrice)
-            return -1;
-        return 1;
+        return $firstPrice <=> $secondPrice;
     }
 
 }

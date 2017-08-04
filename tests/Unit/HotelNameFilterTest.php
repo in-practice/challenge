@@ -34,7 +34,7 @@ class HotelNameFilterTest extends TestCase
         $hotel = $this->getMockHotel('movenpick');
         $request = $this->getMockRequest('movenpick');
         $filterStrategy = new HotelNameFilterStrategy();
-        $this->assertTrue($filterStrategy->processData($request, $hotel));
+        $this->assertTrue($filterStrategy->match($request, $hotel));
     }
     
     
@@ -48,7 +48,7 @@ class HotelNameFilterTest extends TestCase
         $hotel = $this->getMockHotel('movenpick');
         $request = $this->getMockRequest('moven');
         $filterStrategy = new HotelNameFilterStrategy();
-        $this->assertTrue($filterStrategy->processData($request, $hotel));
+        $this->assertTrue($filterStrategy->match($request, $hotel));
     }
     
     
@@ -62,7 +62,7 @@ class HotelNameFilterTest extends TestCase
         $hotel = $this->getMockHotel('movenpick');
         $request = $this->getMockRequest('MOVENPICK');
         $filterStrategy = new HotelNameFilterStrategy();
-        $this->assertTrue($filterStrategy->processData($request, $hotel));
+        $this->assertTrue($filterStrategy->match($request, $hotel));
     }
     
 }

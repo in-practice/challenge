@@ -38,7 +38,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(200,300);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertFalse($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertFalse($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testMoreThanMaximum()
@@ -46,7 +46,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(200,300);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertFalse($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertFalse($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testNullMinimumAndMaximum()
@@ -54,7 +54,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(null,null);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertTrue($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertTrue($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testMinimumOnly()
@@ -62,7 +62,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(50,null);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertTrue($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertTrue($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testMaximumOnly()
@@ -70,7 +70,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(null,200);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertTrue($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertTrue($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testEqualsMinimum()
@@ -78,7 +78,7 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(100,200);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertTrue($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertTrue($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
     
     public function testEqualsMaximum()
@@ -86,6 +86,6 @@ class PriceFilterTest extends TestCase
         $mockHotel = $this->getMockHotel(100);
         $mockRequest = $this->getMockRequest(50,100);
         $priceFilterStrategy = new PriceFilterStrategy();
-        $this->assertTrue($priceFilterStrategy->processData($mockRequest, $mockHotel));
+        $this->assertTrue($priceFilterStrategy->match($mockRequest, $mockHotel));
     }
 }

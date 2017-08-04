@@ -23,7 +23,7 @@ class DateFilterStrategy implements ISearchStrategy {
      *
      * @return void
      */
-    public function processData($request,$hotel): bool {
+    public function match($request,$hotel): bool {
         $requestFromDate = $request->getFromDate();
         $requestToDate = $request->getToDate();
         if(is_null($requestFromDate) && is_null($requestToDate))

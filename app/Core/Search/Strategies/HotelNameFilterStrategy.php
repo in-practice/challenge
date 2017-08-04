@@ -24,7 +24,7 @@ class HotelNameFilterStrategy implements ISearchStrategy {
      *
      * @return bool
      */
-    public function processData($request,$hotel): bool {
+    public function match($request,$hotel): bool {
         
         $requestHotelName = $request->getHotelName();
         if(is_null($requestHotelName))

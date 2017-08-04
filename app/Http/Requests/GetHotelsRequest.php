@@ -24,7 +24,10 @@ class GetHotelsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fromPrice'=>'numeric',
+            'toPrice'=>'numeric',
+            'fromDate'=>'date',
+            'toDate'=>'date'
         ];
     }
 }

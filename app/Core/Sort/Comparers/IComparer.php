@@ -12,6 +12,6 @@ use \challenge\Core\Entities\Hotel;
  *
  * @author mostafasaeed
  */
-interface IHotelComparer {
+interface IComparer {
     function compare($firstHotel,$secondHotel);
 }

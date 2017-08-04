@@ -14,6 +14,6 @@ namespace challenge\Core\ValueObjects;
  * @author mostafasaeed
  */
 class HotelSortingField {
-    const HotelName = 0;
-    const Price = 1;
+    const HotelName = 'name';
+    const Price = 'price';
 }

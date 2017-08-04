@@ -13,16 +13,13 @@ use \challenge\Core\Entities\Hotel;
  *
  * @author mostafasaeed
  */
-class HotelNameComparer implements IHotelComparer {
+class HotelNameComparer implements IComparer {
 
+    
     public function compare($firstHotel,$secondHotel) {
         $firstName = $firstHotel->getName();
         $secondName = $secondHotel->getName();
-        if($firstName== $secondName)
-            return 0;
-        if($firstName < $secondName)
-            return -1;
-        return 1;
+        return $firstName <=> $secondName;
     }
 
 }

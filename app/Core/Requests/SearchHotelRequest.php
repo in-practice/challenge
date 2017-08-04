@@ -60,11 +60,11 @@ class SearchHotelRequest {
     }
     
     public function getSortingField(){
-        return $this->getSortingField();
+        return $this->sortingField;
     }
     
     public function getSortingDirection(){
-        return $this->getSortingDirection();
+        return $this->sortingDirection;
     }
     
 }

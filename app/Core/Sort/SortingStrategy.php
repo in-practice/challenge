@@ -11,40 +11,30 @@ use \challenge\Core\ValueObjects\HotelSortingField;
 use Comparers\HotelPriceComparer;
 use Comparers\HotelNameComparer;
 use \challenge\Core\Entities\Hotel;
-use Comparers\IHotelComparer;
+use Comparers\IComparer;
+use challenge\Core\ValueObjects\SortingDirection;
 /**
  *
  * @author mostafasaeed
  */
-abstract class SortingStrategy {
+class SortingStrategy {
     
     /**
      * Responsible for applying the sorting algorithm
      *
      * @return Hotel[]
      */
-    public function sort($request,$hotels){
-        $sortingField = $request->getSortingField();
-        $sortingDirection = $request->getSortingDirection();
-        $comparer = $this->getComparer($sortingField);
-        
-        //Sorting using quick sort
-        $length = count($hotels);
-        
-    }
-    
-    
-     /**
-     * Responsible for choosing the right comparer according to the sorting field
-     * Changing the comparer means changing the sorting field
-     * In a more complicated scenario ,this function can be moved to another class with different responsibility
-     * @return IHotelComparer
-     */
-    private function getComparer($sortingField){
-        if($sortingField == HotelSortingField::Price)
-            return new HotelPriceComparer();
-        else
-            return new HotelNameComparer();
-    }
+    public function sort($values,$comparer,$direction = SortingDirection::Ascending){
 
+        $count = count($values);
+        if($count == 0)
+            return $values;
+        usort($values, function($firstValue,$secondValue) use ($comparer,$direction){
+            $result = $comparer->compare($firstValue,$secondValue);
+            if($direction == SortingDirection::Descending)
+                $result = -$result;
+            return $result;
+        });
+        return $values;
+    }   
 }

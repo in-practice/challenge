@@ -24,7 +24,7 @@ class PriceFilterStrategy implements ISearchStrategy {
      *
      * @return bool
      */
-    public function processData($request,$hotel): bool {
+    public function match($request,$hotel): bool {
         $fromPrice = $request->getFromPrice();
         $toPrice = $request->getToPrice();
         if(is_null($fromPrice) && is_null($toPrice))

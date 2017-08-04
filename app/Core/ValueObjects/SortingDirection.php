@@ -14,6 +14,6 @@ namespace challenge\Core\ValueObjects;
  * @author mostafasaeed
  */
 class SortingDirection {
-    const Ascending = 0;
-    const Descending = 1;
+    const Ascending = 'asc';
+    const Descending = 'desc';
 }

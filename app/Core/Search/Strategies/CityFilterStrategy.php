@@ -24,7 +24,7 @@ class CityFilterStrategy implements ISearchStrategy {
      *
      * @return bool
      */
-    public function processData($request,$hotel): bool {
+    public function match($request,$hotel): bool {
         
         $requestCityName = $request->getCityName();
         if(is_null($requestCityName))

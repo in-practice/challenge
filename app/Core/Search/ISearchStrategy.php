@@ -22,5 +22,5 @@ interface ISearchStrategy {
     *
     * @return type HotelsSearchResponse
     */ 
-    function processData($request,$data);
+    function match($request,$data);
 }
