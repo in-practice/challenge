@@ -108,8 +108,7 @@ class HotelsServiceTest extends TestCase
      * @return void
      */
     public function testHotelNameSorting()
-    {
-        
+    {   
         $hotels= [
             new Hotel('CBA HOTEL','cairo',100,[]),
             new Hotel('ABC HOTEL','cairo',100,[])
